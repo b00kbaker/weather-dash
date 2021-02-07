@@ -1,11 +1,24 @@
-var currentDate = dayjs().date();
-var myKey= 
+var currentDate = dayjs();
+var myKey= "1c142e1c318254dff9cf9240d0f423c4";
+var defaultCity="Denver";
+var searchCity= document.getElementById('city-search');
+var pastCities= document.createElement('li');
+
+document.getElementById('current-date').textContent = currentDate.format("MM/DD/YYYY");
 
 
 
+fetch('https://api.openweathermap.org/data/2.5/weather?q=' + defaultCity + '&APPID=' + myKey)
+ .then(response => response.json()
+ .then(data => {
+     console.log(data);
+     console.log(data.main.temp);
+     console.log.apply(data.main.feels_like);
 
-console.log(currentDate);
-
+     var currentTemp = data.main.temp;
+     document.getElementById('today-temp').textContent= currentTemp;
+     return;
+ }))
 // Global variables
 // Current city
 // This week
