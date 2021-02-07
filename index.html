@@ -1,23 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css"/>
-   
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+
     <title>Weather Dashboard</title>
-</head>
-<body>
-    <div class="container">
+  </head>
+  <body>
+    <header>
+      <h1 class="text-white text-center bg-dark" id="dash">
+        Weather Dashboard
+      </h1>
+    </header>
+    <main class="container">
+        <div class="row col-4">
+         <label for='city-search'><h2>Search for a City</h2></label>
+         <div class='input-group mb-3'>
+          <input type='search' class='form-control' id='city-search'>
+          <button type="submit" class="btn btn-primary" id="searchCityForm">Go</button>
+        </div>
+        </div>
+        <li class="list-group col-12 d-none d-lg-block px-3" id="searchedCityLi"></li>
+    
 
+    <section class="col-8 mt-3 d-flex flex-column px-3"   id="display-weather-info">
+            <div class="card">
+              <div class="card-body">
+                <h2 class="card-title d-flex align-items-center lead font-weight-bold" style="height: 100px">
+                  <span id="cityName">Name of City</span>
+                  <span class="px-3" id="currentdate"> MM/DD/YY</span>
+                  <img class="weather-icon" id="weatherIconToday" src="">
+                  </img>
+                </h2>
+                <p class="card-text">
+                  Temperature:
+                  <span id="tempToday">--</span>
+                </p>
+                <p class="card-text">
+                  Humidity:
+                  <span id="humidityToday">--</span>
+                </p>
+                <p class="card-text">
+                  Wind Speed:
+                  <span id="windSpeedToday">--</span>
+                </p>
+                <p class="card-text">
+                  UV Index:
+                  <span id="UVIndexToday">--</span>
+                </p>
+              </div>
+            </div>
+            <div class="px-3">
+              <h2 class="card-title d-flex align-items-center lead font-weight-bold mt-3" style="height: 50px">
+                5-Day Forecast:
+              </h2>
+              <div class="row justify-content-between">
+                <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                  <p class="card-title font-weight-bold" id="Date1">MM/DD/YY</p>
+                  <p class="card-text" style="height: 100px">
+                    <img class="weather-icon" id="weatherIconDay1" src="">
+                  </img>
+                  </p>
+                  <p class="card-text">Temp:
+                    <spanid id="tempDay1">--</span>
+                  </p>
+                  <p class="card-text">Humidity:
+                    <span id="humidityDay1">--</span>
+                  </p>
+                </div>
+                <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                  <p class="card-title font-weight-bold" id="Date2">MM/DD/YY</p>
+                  <p class="card-text" style="height: 100px">
+                    <img class="weather-icon" id="weatherIconDay2" src="">
+                  </img>
+                  </p>
+                  <p class="card-text">Temp:
+                    <spanid id="tempDay2">--</span>
+                  </p>
+                  <p class="card-text">Humidity:
+                    <span id="humidityDay2">--</span>
+                  </p>
+                </div>
+                <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                  <p class="card-title font-weight-bold" id="Date3">MM/DD/YY</p>
+                  <p class="card-text" style="height: 100px">
+                    <img class="weather-icon" id="weatherIconDay3" src="">
+                  </img>
+                  </p>
+                  <p class="card-text">Temp:
+                    <spanid id="tempDay3">--</span>
+                  </p>
+                  <p class="card-text">Humidity:
+                    <span id="humidityDay3">--</span>
+                  </p>
+                </div>
+                <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                  <p class="card-title font-weight-bold" id="Date4">MM/DD/YY</p>
+                  <p class="card-text" style="height: 100px">
+                    <img class="weather-icon" id="weatherIconDay4"  src="">
+                  </img>
+                  </p>
+                  <p class="card-text">Temp:
+                    <spanid id="tempDay4">--</span>
+                  </p>
+                  <p class="card-text">Humidity:
+                    <span id="humidityDay4">--</span>
+                  </p>
+                </div>
+                <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                  <p class="card-title font-weight-bold" id="Date5">MM/DD/YY</p>
+                  <p class="card-text" style="height: 100px">
+                    <img class="weather-icon" id="weatherIconDay5" src="">
+                  </img>
+                  </p>
+                  <p class="card-text">Temp:
+                    <spanid id="tempDay5">--</span>
+                  </p>
+                  <p class="card-text">Humidity:
+                    <span id="humidityDay5">--</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          </main>
+    
+    
+    
+    
 
-
-
-
-
-    </div>
- <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
- <script src="assets/script.js"></script>
-</body>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="assets/script.js"></script>
+  </body>
 </html>
