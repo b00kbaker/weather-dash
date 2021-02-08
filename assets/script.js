@@ -15,9 +15,25 @@ function displayCurrent(tempData) {
   currentTemp = Math.floor(currentTemp);
   document.getElementById("today-temp").textContent = currentTemp;
 
-  console.log(currentTemp);
+  var currentHumidity = tempData.main.humidity;
+  document.getElementById("today-humidity").textContent = currentHumidity;
+  
+  var currentSpeed = tempData.wind.speed;
+  document.getElementById("today-speed").textContent = currentSpeed;
   return;
-}
+};
+
+function displayUV()
+
+function displayFive(fiveData) {
+    console.log(fiveData);
+      var fiveForecast = fiveData.weather.id.main.temp;
+      document.getElementById("temp-Day1").textContent = fiveForecast;
+  
+      console.log(fiveForecast);
+      return;
+};
+  
 
 fetch(
   "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -36,14 +52,7 @@ fetch(
   })
 );
 
-function displayFive(fiveData) {
-  console.log(fiveData);
-  //   var fiveForecast = fiveData.weather.temp;
-  //   document.getElementById("today-temp").textContent = currentTemp;
 
-  //   console.log(currentTemp);
-  //   return;
-}
 
 function fiveDay(cityId) {
   var requestOptions = {
@@ -62,7 +71,7 @@ function fiveDay(cityId) {
       displayFive(result);
     })
     .catch((error) => console.log("error", error));
-}
+};
 
 document.getElementById("enter-city").addEventListener("click", function () {
   console.log(searchCity.value);
