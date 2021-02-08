@@ -11,6 +11,8 @@ document.getElementById("current-date").textContent = currentDate.format(
 
 function displayCurrent(tempData) {
   var currentTemp = tempData.main.temp;
+  currentTemp = (currentTemp - 273.15) * 1.8 + 32;
+  currentTemp = Math.floor(currentTemp);
   document.getElementById("today-temp").textContent = currentTemp;
 
   console.log(currentTemp);
@@ -35,12 +37,12 @@ fetch(
 );
 
 function displayFive(fiveData) {
-    console.log(fiveData);
-//   var fiveForecast = fiveData.weather.temp;
-//   document.getElementById("today-temp").textContent = currentTemp;
+  console.log(fiveData);
+  //   var fiveForecast = fiveData.weather.temp;
+  //   document.getElementById("today-temp").textContent = currentTemp;
 
-//   console.log(currentTemp);
-//   return;
+  //   console.log(currentTemp);
+  //   return;
 }
 
 function fiveDay(cityId) {
@@ -57,7 +59,7 @@ function fiveDay(cityId) {
   )
     .then((response) => response.text())
     .then((result) => {
-      displayFive(result)
+      displayFive(result);
     })
     .catch((error) => console.log("error", error));
 }
@@ -69,17 +71,8 @@ document.getElementById("enter-city").addEventListener("click", function () {
   cityList.prepend(pastCities);
 });
 
-// Global variables
-// Current city
-// This week
-// Weather Array=[Sunny, Overcast, Rain, Snow, Windy,]
-
 // When the page loads search localStorage to see last city viewed and view it's stats + list up to 5(?) past searches. If nothing in localStorage view basic page format or set a city as a default?
 
-// View current date (DD/MM/YYYY)
-
 // When city is searched run weather API (does it have everything for the map side of things too?)
-
-// Display in main frame (think jumbotron) the city name/date/current day's weather (temperature/humidity/wind speed/UV index)
 
 // In 5 day cards display next days in order of proper sequence {card1/card2/card3/card4/card5} correct image/date (DD/MM/YYYY)/temperature/humidity
