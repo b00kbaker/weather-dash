@@ -1,7 +1,5 @@
 var currentDate = dayjs();
 var myKey = "1c142e1c318254dff9cf9240d0f423c4";
-var defaultCity = "Denver";
-var searchCity = document.getElementById("city-search");
 var pastCities = document.getElementsByTagName("li");
 var cityList = document.getElementsByTagName("ul");
 
@@ -9,76 +7,48 @@ document.getElementById("current-date").textContent = currentDate.format(
   "MM/DD/YYYY"
 );
 
+document.getElementById("enter-city").addEventListener("click", function () {
+  var searchCity = document.getElementById("city-search");
+  var enterCity = searchCity.value;
+  console.log(searchCity.value);
+
+ fetch(
+  "https://api.openweathermap.org/data/2.5/weather?q=" +
+     enterCity +
+    "&APPID=" +
+    myKey
+ ).then((response) =>
+  response.json().then((data) => {
+    console.log(data.name);
+    console.log(data.main.temp);
+    if (data) {
+      // fiveDay(data.id);
+      displayCurrent(data);
+    }
+    return;
+  }))
+});
+
+
 function displayCurrent(tempData) {
   var currentTemp = tempData.main.temp;
   currentTemp = (currentTemp - 273.15) * 1.8 + 32;
   currentTemp = Math.floor(currentTemp);
   document.getElementById("today-temp").textContent = currentTemp;
 
+  console.log(currentTemp);
   var currentHumidity = tempData.main.humidity;
   document.getElementById("today-humidity").textContent = currentHumidity;
-  
+
   var currentSpeed = tempData.wind.speed;
   document.getElementById("today-speed").textContent = currentSpeed;
   return;
 };
 
-function displayUV()
-
-function displayFive(fiveData) {
-    console.log(fiveData);
-      var fiveForecast = fiveData.weather.id.main.temp;
-      document.getElementById("temp-Day1").textContent = fiveForecast;
-  
-      console.log(fiveForecast);
-      return;
-};
-  
-
-fetch(
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-    defaultCity +
-    "&APPID=" +
-    myKey
-).then((response) =>
-  response.json().then((data) => {
-    console.log(data);
-    console.log(data.main.temp);
-    if (data) {
-      fiveDay(data.id);
-      displayCurrent(data);
-    }
-    return;
-  })
-);
 
 
 
-function fiveDay(cityId) {
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-  };
 
-  fetch(
-    "https://api.openweathermap.org/data/2.5/forecast?id=" +
-      cityId +
-      "&appid=1c142e1c318254dff9cf9240d0f423c4",
-    requestOptions
-  )
-    .then((response) => response.text())
-    .then((result) => {
-      displayFive(result);
-    })
-    .catch((error) => console.log("error", error));
-};
-
-document.getElementById("enter-city").addEventListener("click", function () {
-  console.log(searchCity.value);
-  pastCities.textContent = searchCity.value;
-  pastCities.classList.add("cities");
-  cityList.prepend(pastCities);
-});
 
 // When the page loads search localStorage to see last city viewed and view it's stats + list up to 5(?) past searches. If nothing in localStorage view basic page format or set a city as a default?
 
