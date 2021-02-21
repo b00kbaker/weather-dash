@@ -10,7 +10,6 @@ document.getElementById("current-date").textContent = currentDate.format(
 document.getElementById("enter-city").addEventListener("click", function () {
   var searchCity = document.getElementById("city-search");
   var enterCity = searchCity.value;
-  console.log(searchCity.value);
 
  fetch(
   "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -42,6 +41,9 @@ function displayCurrent(tempData) {
 
   var currentSpeed = tempData.wind.speed;
   document.getElementById("today-speed").textContent = currentSpeed;
+ 
+  var currentCity = tempData.name;
+  document.getElementById("city-name").textContent = currentCity;
   return;
 };
 
