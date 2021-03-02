@@ -1,7 +1,6 @@
 var currentDate = dayjs();
 var myKey = "1c142e1c318254dff9cf9240d0f423c4";
 var pastCities = document.getElementsByTagName("li");
-// var cityList = document.getElementsByTagName("ul");
 var historyCities=[];
 var enterCity;
 
@@ -52,6 +51,7 @@ function createWeather(){
           if (onedata) {
             displayUVI(onedata);
             displayForescast(onedata);
+            displayIcon(onedata);
           }
         })
         .catch((error) => console.log("error", error));
@@ -120,6 +120,12 @@ function displayForescast(onedata) {
 
 };
 
+function displayIcon(onedata){
+console.log(onedata.daily[0].weather[0].icon);
+var oneIcon = onedata.daily[0].weather[0].icon;
+document.getElementById("icon-1").textContent = oneIcon;
+};
+
 var localStoragecity= localStorage.getItem('cities');
 
 if(localStoragecity){
@@ -127,6 +133,5 @@ if(localStoragecity){
   console.log("hi",savedCity);
   enterCity= savedCity;
   createWeather();
-  var cityList = document.getElementsByTagName("ul");
 }
 
